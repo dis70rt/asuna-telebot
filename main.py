@@ -87,7 +87,6 @@ def callback_worker(call):
         filename = image.download(call.message.chat.id, photo_url)
         sleep(1)
 
-        print(filename)
         bot.send_photo(call.message.chat.id, photo=open(filename, 'rb'), reply_markup=wallpaper)
         os.remove(filename)
     
