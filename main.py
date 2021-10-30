@@ -5,7 +5,7 @@ from lib import wallpaper as WP
 from lib import Data, image
 import time
 
-os.system("cls")
+os.system('cls' if os.name=='nt' else 'clear')
 
 
 API_KEY = os.getenv("API_KEY") if os.getenv("API_KEY")!=None else "2068683845:AAFsB-599frUUaUj6W_aTenovaBbV-xSNX4"
@@ -65,7 +65,7 @@ If you have any suggestions, please feel free to contact my developer
     '''
 
     dirname = os.path.dirname(__file__)
-    pfp = os.path.join(dirname, 'lib\\pfp.jpg')
+    pfp = os.path.join(dirname, 'lib\pfp.jpg')
 
     bot.send_photo(message.chat.id, caption=msg, photo=open(pfp,'rb'), reply_markup=contact)
 
