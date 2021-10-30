@@ -64,10 +64,7 @@ I'm Asuna and I will send you wallpaper as per your interest.
 If you have any suggestions, please feel free to contact my developer
     '''
 
-    dirname = os.path.dirname(__file__)
-    pfp = os.path.join(dirname, 'lib\pfp.jpg')
-
-    bot.send_photo(message.chat.id, caption=msg, photo=open(pfp,'rb'), reply_markup=contact)
+    bot.send_photo(message.chat.id, caption=msg, photo=open('pfp.jpg','rb'), reply_markup=contact)
 
     data = [
         message.from_user.id,
