@@ -2,7 +2,7 @@ import os
 import telebot
 from telebot.types import InlineKeyboardButton
 from lib import wallpaper as WP
-from lib import Data
+# from lib import Data
 
 os.system("cls")
 
@@ -47,7 +47,7 @@ def start(message):
         message.from_user.last_name
     ]
 
-    Data.import_data(data)
+    # Data.import_data(data)
 
     msg = rf'''
     Koniciwa!, {data[2]}
