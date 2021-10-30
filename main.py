@@ -81,13 +81,17 @@ def callback_worker(call):
             if str(WP.wallpaper(WALLPAPER.get(call.data))) == "None":
                 continue
             else:
-                photo_url = str(WP.wallpaper(WALLPAPER.get(call.data)))
+                url = str(WP.wallpaper(WALLPAPER.get(call.data)))
                 break
 
-        filename = image.download(call.message.chat.id, photo_url)
+        filename = image.download(call.message.chat.id, url)
+        photo_url = f"[Download Here]({url})"
         sleep(1)
 
-        bot.send_photo(call.message.chat.id, photo=open(filename, 'rb'), reply_markup=wallpaper)
+        try:
+            bot.send_photo(call.message.chat.id, caption=photo_url, photo=open(filename, 'rb'), parse_mode="MarkdownV2", reply_markup=wallpaper)
+        except Exception as e:
+            bot.send_message(call.message.chat.id, text="Sorry, Please Try Again", reply_markup=wallpaper)
         os.remove(filename)
     
     if call.data == 'explore':
