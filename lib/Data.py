@@ -1,6 +1,8 @@
 import pandas as pd
+import os
 
-filename = 'lib/data.csv'
+dirname = os.path.dirname(__file__)
+filename = os.path.join(dirname, 'data.csv')
 fields = ['id','username','first_name','last_name']
 
 def import_data(data: list):
@@ -12,7 +14,7 @@ def import_data(data: list):
         'last_name': data[3]
     }
 
-    df = pd.read_csv(filename, index_col=0)
+    df = pd.read_csv(filename)
     df.drop_duplicates(keep='first', ignore_index=True, inplace=True)
     
     if data[0] not in df['id'].values:

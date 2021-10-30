@@ -2,7 +2,8 @@ import os
 import telebot
 from telebot.types import InlineKeyboardButton
 from lib import wallpaper as WP
-from lib import Data
+from lib import Data, image
+import time
 
 os.system("cls")
 
@@ -35,6 +36,10 @@ wallpaper.add(
 contact.add(InlineKeyboardButton("Contact Developer",callback_data="contact"))
 contact.add(InlineKeyboardButton("Explore Wallpaper",callback_data="explore"))
 
+def sleep(seconds: int):
+    start = time.time()
+    while (time.time() - start < seconds):
+        pass
 
 
 @bot.message_handler(commands=['start'])
@@ -47,7 +52,9 @@ def start(message):
         message.from_user.last_name
     ]
 
-    Data.import_data(data)
+    try:
+        Data.import_data(data)
+    except Exception as e: print(f"Error: {e}")
 
     msg = rf'''
     Koniciwa!, {data[2]}
@@ -57,7 +64,7 @@ I'm Asuna and I will send you wallpaper as per your interest.
 If you have any suggestions, please feel free to contact my developer
     '''
 
-    bot.send_photo(message.chat.id, caption=msg, photo=open('lib/pfp.jpg','rb'), reply_markup=contact)
+    bot.send_photo(message.chat.id, caption=msg, photo=open('lib\\pfp.jpg','rb'), reply_markup=contact)
 
     data = [
         message.from_user.id,
@@ -69,8 +76,20 @@ If you have any suggestions, please feel free to contact my developer
 @bot.callback_query_handler(func=lambda call: True)
 def callback_worker(call):
     if call.data in WALLPAPER.keys():
-        photo = f'{WP.wallpaper(WALLPAPER.get(call.data))}'
-        bot.send_message(call.message.chat.id, text=photo, reply_markup=wallpaper)
+
+        while True:
+            if str(WP.wallpaper(WALLPAPER.get(call.data))) == "None":
+                continue
+            else:
+                photo_url = str(WP.wallpaper(WALLPAPER.get(call.data)))
+                break
+
+        filename = image.download(call.message.chat.id, photo_url)
+        sleep(3)
+
+        print(filename)
+        bot.send_photo(call.message.chat.id, photo=open(filename, 'rb'), reply_markup=wallpaper)
+        os.remove(filename)
     
     if call.data == 'explore':
         bot.send_message(call.message.chat.id, text="I only Provide High Quality Wallpaper 😁", reply_markup=wallpaper)
@@ -78,7 +97,4 @@ def callback_worker(call):
     if call.data == 'contact':
         bot.send_message(call.message.chat.id, text="[Saikat](https://t.me/saikat0326)", parse_mode='MarkdownV2')
     
-
-
-
 bot.polling()
