@@ -22,8 +22,17 @@ def import_data(data: list):
     if data[0] not in df['id'].values:
         df = df.append(data_dict, ignore_index=True)
         df.to_csv(filename, mode='w', index=False)
-        print({df})
+        readcsv(filename)
 
     else:
         df.to_csv(filename, mode='w', index=False)
-        print(df)
+        readcsv(filename)
+
+
+def readcsv(filename):
+    with open(filename, 'r') as file:
+        data = file.readlines()
+        for line in data:
+            print(line)
+        
+
