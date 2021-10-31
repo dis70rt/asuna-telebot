@@ -1,6 +1,8 @@
 import pandas as pd
 import os
 
+os.system('cls' if os.name=='nt' else 'clear')
+
 dirname = os.path.dirname(__file__)
 filename = os.path.join(dirname, 'data.csv')
 fields = ['id','username','first_name','last_name']
@@ -19,9 +21,9 @@ def import_data(data: list):
     
     if data[0] not in df['id'].values:
         df = df.append(data_dict, ignore_index=True)
-        print(f"Data Entered: {df}")
         df.to_csv(filename, mode='w', index=False)
+        print({df})
 
     else:
         df.to_csv(filename, mode='w', index=False)
-        print(f"Data Not Entered: {df}")
+        print(df)
