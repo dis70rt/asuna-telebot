@@ -19,6 +19,9 @@ def import_data(data: list):
     
     if data[0] not in df['id'].values:
         df = df.append(data_dict, ignore_index=True)
+        print(f"Data Entered: {df}")
         df.to_csv(filename, mode='w', index=False)
 
-    else: df.to_csv(filename, mode='w', index=False)
+    else:
+        df.to_csv(filename, mode='w', index=False)
+        print(f"Data Not Entered: {df}")

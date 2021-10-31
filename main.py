@@ -91,7 +91,7 @@ def callback_worker(call):
         try:
             bot.send_photo(call.message.chat.id, caption=photo_url, photo=open(filename, 'rb'), parse_mode="MarkdownV2", reply_markup=wallpaper)
         except Exception as e:
-            bot.send_message(call.message.chat.id, text="Sorry, Please Try Again", reply_markup=wallpaper)
+            bot.send_message(call.message.chat.id, text="Sorry, please try again 🙇", reply_markup=wallpaper)
         os.remove(filename)
     
     if call.data == 'explore':
