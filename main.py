@@ -78,9 +78,7 @@ def callback_worker(call):
         bot.send_message(call.message.chat.id, text="I only Provide High Quality Wallpaper 😁", reply_markup=wallpaper)
     
     if call.data == 'contact':
-        developer = r"""Letter for the developer:
-
-**Thanks** for using my Bot\.
+        developer = r"""**Thanks** for using my Bot\.
 I hope, this kills your trouble to find wallpapers\.
 
 If you have any problems or suggestions, you can contact me through [Twitter](twitter.com/saikatdas_) or directly [DM me on Telegram](https://t.me/saikat0326)
