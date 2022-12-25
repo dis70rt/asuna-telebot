@@ -16,8 +16,8 @@ wallpaper2 = telebot.types.InlineKeyboardMarkup()
 contact = telebot.types.InlineKeyboardMarkup()
 
 WALLPAPER = {
-    "Anime" : "animewallpaper",
-    "Mobile" : "MobileWallpaper"
+    "Hot ️‍🔥" : "hot",
+    "Top ❤️" : "top"
 }
 
 items = list(WALLPAPER.keys())

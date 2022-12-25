@@ -2,3 +2,4 @@ pytelegrambotapi
 pandas
 requests
 Pillow
+praw
