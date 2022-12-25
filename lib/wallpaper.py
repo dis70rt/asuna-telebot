@@ -1,5 +1,4 @@
 from urllib.request import urlopen
-import random
 import praw
 
 reddit = praw.Reddit(
@@ -8,15 +7,8 @@ reddit = praw.Reddit(
     user_agent="asuna_bot")
 
 subreddit = reddit.subreddit("animewallpaper")
-URL_top = []
-URL_hot = []
 
 def wallpaper(TYPE: str):
-    if str == "hot":
-        for submission in subreddit.hot(limit=50):
-            URL_hot.append(submission.url)
-        return random.choice(URL_hot)
-    else :
-        for submission in subreddit.top(limit=50):
-            URL_top.append(submission.url)
-        return random.choice(URL_top)
+    submission = subreddit.random()
+    return submission.url
+
