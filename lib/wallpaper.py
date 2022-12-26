@@ -19,7 +19,9 @@ for submission in subreddit.top(limit=1000):
 
 def wallpaper(TYPE: str):
     if str == "hot":
-        return hot[random.randint(0,1000)].url
+        hpost = hot[random.randint(0,1000)]
+        return (hpost.title, hpost.url)
     else :
-        return top[random.randint(0,1000)].url
+        tpost = top[random.randint(0,1000)]
+        return (tpost.title, tpost.url)
 
