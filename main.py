@@ -57,13 +57,12 @@ def callback_worker(call):
 
         while True:
             raw_title, url = WP.wallpaper(WALLPAPER.get(call.data))
-            print(raw_title, url)
 
             if url == "None":
                 continue
             else:
                 break
-        title = raw_title.replace("_", "\\_").replace("*", "\\*").replace("[", "\\[").replace("`", "\\`").replace("]","\\]").replace("(","\\(").replace(")","\\)")
+        title = raw_title.replace("_", "\\_").replace("*", "\\*").replace("[", "\\[").replace("`", "\\`").replace("]","\\]").replace("(","\\(").replace(")","\\)").replace("-","\\-").Welcome to Gboard clipboard, any text that you copy will be saved here.replace(".","\\.")
         filename = image.download(call.message.chat.id, url)
         photo_url = f"{title}\n[Download Here]({url})"
         sleep(1)
