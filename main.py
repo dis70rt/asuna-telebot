@@ -56,7 +56,7 @@ def callback_worker(call):
     if call.data in WALLPAPER.keys():
 
         while True:
-            if str(WP.wallpaper(WALLPAPER.get(call.data))) == "None":
+            if WP.wallpaper(WALLPAPER.get(call.data))[1] == "None":
                 continue
             else:
                 title, url = WP.wallpaper(WALLPAPER.get(call.data))
