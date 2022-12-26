@@ -74,7 +74,7 @@ def callback_worker(call):
             try:
                 bot.send_document(call.message.chat.id, caption=photo_url, document=open(filename, 'rb'), parse_mode="MarkdownV2", reply_markup=wallpaper)
             except Exception as e:
-                bot.send_message(call.message.chat.id, text="Sorry, please try again 🙇", reply_markup=wallpaper)
+                bot.send_message(call.message.chat.id, text=str(e), reply_markup=wallpaper)
         try:
             os.remove(filename)
         except Exception as e: print("Could not remove")
