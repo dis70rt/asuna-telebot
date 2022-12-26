@@ -8,7 +8,16 @@ reddit = praw.Reddit(
 
 subreddit = reddit.subreddit("animewallpaper")
 
+top = []
+hot = []
+
 def wallpaper(TYPE: str):
-    submission = subreddit.random()
-    return submission.url
+    if str == "hot":
+        for submission in subreddit.hot(limit=50):
+            hot = list(submission)
+        return hot[random.randint(0,50)].url
+    else :
+        for submission in subreddit.top(limit=50):
+            top = list(submission)
+        return top[random.randint(0,50)].url
 
