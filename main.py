@@ -57,7 +57,7 @@ def callback_worker(call):
 
         while True:
             raw_title, url = WP.wallpaper(WALLPAPER.get(call.data))
-            print(title, url)
+            print(raw_title, url)
 
             if url == "None":
                 continue
