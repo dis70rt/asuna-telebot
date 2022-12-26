@@ -56,10 +56,12 @@ def callback_worker(call):
     if call.data in WALLPAPER.keys():
 
         while True:
-            if WP.wallpaper(WALLPAPER.get(call.data))[1] == "None":
+            title, url = WP.wallpaper(WALLPAPER.get(call.data))
+            print(title, url)
+
+            if url == "None":
                 continue
             else:
-                title, url = WP.wallpaper(WALLPAPER.get(call.data))
                 break
 
         filename = image.download(call.message.chat.id, url)
