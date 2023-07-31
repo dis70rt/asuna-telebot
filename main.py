@@ -8,7 +8,7 @@ import time
 os.system('cls' if os.name=='nt' else 'clear')
 
 
-API_KEY = os.getenv("API_KEY") if os.getenv("API_KEY")!=None else "2068683845:AAFsB-599frUUaUj6W_aTenovaBbV-xSNX4"
+API_KEY = os.getenv("API_KEY")
 bot = telebot.TeleBot(API_KEY)    
  
 wallpaper = telebot.types.InlineKeyboardMarkup()
